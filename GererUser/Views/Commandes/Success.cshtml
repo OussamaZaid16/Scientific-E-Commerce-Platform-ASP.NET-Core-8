@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Commande Réussie - ScienceStore";
+}
+
+<div class="container py-5 mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            @* Indicateur de progression (Étape 3 complétée) *@
+            <div class="d-flex justify-content-center mb-5">
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center mb-2 shadow" style="width: 40px; height: 40px;">
+                        <i class="fas fa-check small"></i>
+                    </div>
+                    <small class="text-muted fw-bold opacity-50">Panier</small>
+                </div>
+                <div class="align-self-center border-top border-2 border-warning" style="width: 60px; margin-bottom: 25px;"></div>
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center mb-2 shadow" style="width: 40px; height: 40px;">
+                        <i class="fas fa-check small"></i>
+                    </div>
+                    <small class="text-muted fw-bold opacity-50">Expédition</small>
+                </div>
+                <div class="align-self-center border-top border-2 border-warning" style="width: 60px; margin-bottom: 25px;"></div>
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center mb-2 shadow fw-bold" style="width: 40px; height: 40px;">
+                        3
+                    </div>
+                    <small class="fw-bold">Succès</small>
+                </div>
+            </div>
+
+            @* Carte de confirmation *@
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden text-center p-5">
+                <div class="position-absolute top-0 start-50 translate-middle-x" style="height: 5px; width: 100%; background: linear-gradient(to right, #ffc107, #212529);"></div>
+
+                <div class="mb-4 pt-3">
+                    <div class="display-1 text-warning animate__animated animate__zoomIn">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                </div>
+
+                <h2 class="fw-extrabold text-dark mb-3">Commande Validée !</h2>
+                <p class="text-muted fs-5 px-md-4">
+                    Merci pour votre confiance. Vos articles ont été réservés et sont en cours de préparation.
+                </p>
+
+                <div class="bg-light rounded-4 p-4 my-4 border border-warning border-opacity-10 text-start">
+                    <div class="d-flex mb-3">
+                        <div class="bg-warning rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fas fa-truck text-dark"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Livraison prévue</h6>
+                            <small class="text-muted">Sous 2 à 5 jours ouvrés</small>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="bg-dark rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fas fa-wallet text-warning"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Paiement</h6>
+                            <small class="text-muted">À la réception de votre colis</small>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="small text-muted mb-5">
+                    Un email de confirmation vient d'être envoyé à votre adresse.
+                    <br>Nos experts vous contacteront par téléphone si nécessaire.
+                </p>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-dark btn-lg px-5 rounded-pill shadow-sm fw-bold">
+                        RETOUR À LA BOUTIQUE
+                    </a>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f4f7f6;
+    }
+
+    .fw-extrabold {
+        font-weight: 800;
+    }
+
+    .animate__zoomIn {
+        animation-duration: 0.8s;
+    }
+
+    .card {
+        border-top: none;
+    }
+</style>

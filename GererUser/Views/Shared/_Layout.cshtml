@@ -1,0 +1,150 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ScienceStore</title>
+
+    @* Polices, Bootstrap 5 et FontAwesome *@
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .main-container {
+            min-height: 80vh;
+            padding-bottom: 50px;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+        }
+
+        .dropdown-item:hover {
+            background-color: #ffc107;
+            color: #212529 !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+            <div class="container">
+                <a class="navbar-brand text-warning" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-flask"></i> ScienceStore
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">A propos</a>
+                        </li>
+
+                        @if (Context.Session.GetString("UserEmail") == "admin@gmail.com")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-shield"></i> Gestion
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Users" asp-action="Index">
+                                            <i class="fas fa-users me-2"></i> Gestion Utilisateurs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Articles" asp-action="IndexM">
+                                            <i class="fas fa-microscope me-2"></i> Gestion Articles
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Commandes" asp-action="Index">
+                                            <i class="fas fa-file-invoice-dollar me-2"></i> Gestion Commandes
+                                        </a>
+                                    </li>
+                             
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="d-flex align-items-center">
+                        @* Bouton Panier : Uniquement le logo *@
+                        <a class="btn btn-outline-warning me-2" asp-controller="Panier" asp-action="Index">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+
+                        @if (Context.Session.GetInt32("UserId") != null)
+                        {
+                            <a class="btn btn-sm btn-outline-light" asp-controller="Account" asp-action="Logout">Déconnexion</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5 main-container">
+        @RenderBody()
+    </main>
+
+    <footer class="py-2 mt-auto border-top border-secondary" style="background-color: #080808;">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="small text-white-50">
+                    <span>&copy; @DateTime.Now.Year <span class="text-warning fw-bold">ScienceStore</span></span>
+                    <span class="mx-2 text-secondary">|</span>
+                    <a asp-controller="Home" asp-action="Privacy" class="text-white-50 text-decoration-none hover-warning">Confidentialité</a>
+                </div>
+
+                <div style="font-size: 0.75rem;" class="text-muted text-uppercase tracking-wider">
+                    <i class="fas fa-microscope me-1 text-warning"></i> La science à portée de main
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .hover-warning:hover {
+            color: #ffcc00 !important;
+            transition: 0.3s;
+        }
+
+        .tracking-wider {
+            letter-spacing: 1px;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <script>
+        // Fonction simplifiée : ajout sans mise à jour de badge
+        function ajouterAuPanier(id) {
+            $.post('@Url.Action("Ajouter", "Panier")', { id: id }, function () {
+                alert("🔬 Article ajouté au laboratoire (panier) !");
+            }).fail(function() {
+                alert("Erreur lors de l'ajout au panier.");
+            });
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

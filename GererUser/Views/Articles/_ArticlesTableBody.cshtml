@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GestionUsersMVC.Models.Article>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @if (!string.IsNullOrEmpty(item.NomFichierImage))
+            {
+                <img src="~/images/@item.NomFichierImage" class="rounded shadow-sm" style="width:50px; height:50px; object-fit:cover;" />
+            }
+            else
+            {
+                <div class="rounded bg-light text-center border d-flex align-items-center justify-content-center" style="width:50px; height:50px;">
+                    <i class="fas fa-image text-muted"></i>
+                </div>
+            }
+        </td>
+        <td>
+            <div class="fw-bold">@item.Titre</div>
+            <small class="text-muted">#@item.Id</small>
+        </td>
+        <td><span class="badge bg-primary">@item.Domaine</span></td>
+        <td class="fw-bold text-success">@item.Prix.ToString("C2")</td>
+        <td class="text-center">
+            <div class="btn-group">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning"><i class="fas fa-edit"></i></a>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Supprimer cet article ?');" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                </form>
+            </div>
+        </td>
+    </tr>
+}

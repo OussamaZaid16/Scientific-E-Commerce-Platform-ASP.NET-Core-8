@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Confidentialité - ScienceStore";
+
+}
+
+<div class="container-fluid bg-dark-custom min-vh-100 py-5 px-4">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white mb-2">POLITIQUE DE <span style="color: #ffcc00;">CONFIDENTIALITÉ</span></h1>
+            <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ffcc00;"></div>
+            <p class="text-white mt-3 fs-5 opacity-75">La protection de vos données est une priorité scientifique.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="card border-0 shadow-lg" style="background-color: #1a1a1a; border-radius: 20px;">
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="mb-5">
+                            <h4 class="text-warning fw-bold mb-3"><i class="fas fa-user-shield me-2"></i> 1. Collecte des Informations</h4>
+                            <p class="text-white-50 lh-lg">
+                                ScienceStore Mohammedia collecte les informations nécessaires au traitement de vos commandes et à l'amélioration de votre expérience utilisateur. Cela inclut votre nom, adresse email, et coordonnées professionnelles lors de la création d'un compte ou d'un achat.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h4 class="text-warning fw-bold mb-3"><i class="fas fa-microscope me-2"></i> 2. Utilisation des Données</h4>
+                            <p class="text-white-50 lh-lg">
+                                Vos données sont utilisées exclusivement pour :
+                                <ul class="mt-2">
+                                    <li>L'expédition sécurisée de votre matériel de laboratoire.</li>
+                                    <li>L'envoi de mises à jour sur vos commandes.</li>
+                                    <li>L'amélioration technique de notre catalogue en ligne.</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h4 class="text-warning fw-bold mb-3"><i class="fas fa-lock me-2"></i> 3. Sécurité et Protection</h4>
+                            <p class="text-white-50 lh-lg">
+                                Nous mettons en œuvre des mesures de sécurité de pointe pour préserver la confidentialité de vos informations personnelles. L'accès aux données est strictement limité au personnel autorisé de ScienceStore.
+                            </p>
+                        </div>
+
+                        <hr class="border-secondary my-4">
+
+                        <div class="text-center">
+                            <p class="text-white-50 small mb-4">Dernière mise à jour : @DateTime.Now.ToString("dd MMMM yyyy")</p>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-yellow-pill px-5 py-3">
+                                <i class="fas fa-arrow-left me-2"></i> RETOUR AU CATALOGUE
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-dark-custom {
+        background-color: #0d0d0d;
+    }
+
+    .btn-yellow-pill {
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: 800;
+        border-radius: 50px;
+        transition: 0.3s;
+        border: none;
+    }
+
+        .btn-yellow-pill:hover {
+            background-color: #e6b800;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.2);
+        }
+
+    ul li {
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 10px;
+    }
+
+    footer {
+        display: none !important;
+    }
+</style>

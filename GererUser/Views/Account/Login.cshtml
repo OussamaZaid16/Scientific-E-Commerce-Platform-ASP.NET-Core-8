@@ -1,0 +1,210 @@
+﻿@{
+    ViewData["Title"] = "Connexion - ScienceStore";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #FFA500;
+            --secondary-blue: #FFA500;
+            --bg-light: #f4f7f9;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            /* Petit motif discret de molécules en fond */
+            background-image: radial-gradient(#d1d9e6 1px, transparent 1px);
+            background-size: 30px 30px;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            /* Ombre douce et large pour donner de la profondeur */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* Barre de couleur en haut pour le rappel ScienceStore */
+            .login-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-blue));
+            }
+
+            .login-card h2 {
+                color: #333;
+                font-size: 1.6rem;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+
+            .login-card p {
+                color: #888;
+                font-size: 0.9rem;
+                margin-bottom: 30px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            text-align: left;
+        }
+
+            .form-group label {
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: #555;
+                margin-left: 5px;
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            .form-group i {
+                position: absolute;
+                left: 15px;
+                bottom: 14px;
+                color: #aaa;
+                transition: color 0.3s;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 12px 15px 12px 42px;
+                background-color: #f8f9fa;
+                border: 2px solid #eee;
+                border-radius: 12px;
+                color: #333;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+            }
+
+                .form-group input:focus {
+                    outline: none;
+                    border-color: var(--secondary-blue);
+                    background-color: #fff;
+                    box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+                }
+
+                    .form-group input:focus + i {
+                        color: var(--secondary-blue);
+                    }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #333, #000);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+            .btn-login:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                filter: brightness(1.2);
+            }
+
+        .error-msg {
+            background-color: #fff5f5;
+            color: #e53e3e;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            font-size: 0.85rem;
+        }
+
+        .register-link {
+            color: #777;
+            text-decoration: none;
+        }
+
+            .register-link span {
+                color: var(--secondary-blue);
+                font-weight: 600;
+            }
+
+            .register-link:hover span {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div style="margin-bottom: 15px;">
+            <span style="background: #fff4e0; padding: 15px; border-radius: 50%; display: inline-block;">
+                <i class="fas fa-microscope fa-2x" style="color: var(--primary-color);"></i>
+            </span>
+        </div>
+        <h2>Bienvenue</h2>
+        <p>Connectez-vous à votre espace scientifique</p>
+
+        <form method="post">
+            <div class="form-group">
+                <label>Identifiant</label>
+                <input name="email" type="email" placeholder="email@exemple.com" required />
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input name="motDePasse" type="password" placeholder="••••••••" required />
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <button type="submit" class="btn-login">Se connecter</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error-msg">
+                <i class="fas fa-exclamation-circle me-2"></i> @ViewBag.Error
+            </div>
+        }
+
+        <div class="footer-links" style="text-align: center; width: 100%;">
+            <a href="/Account/Register" class="register-link">
+                <span>Créer un compte</span>
+            </a>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>

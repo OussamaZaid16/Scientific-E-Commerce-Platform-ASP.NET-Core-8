@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "À Propos de ScienceStore";
+}
+
+<div class="container-fluid bg-dark-custom min-vh-100 py-5 px-4">
+    <div class="container">
+        <div class="row align-items-center mb-5 pb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h6 class="text-warning fw-bold text-uppercase tracking-widest mb-3">Notre Histoire</h6>
+                <h1 class="display-4 fw-bold text-white mb-4">L'EXCELLENCE <span style="color: #ffcc00;">SCIENTIFIQUE</span></h1>
+                <p class="text-white fs-5 opacity-75">
+                    Depuis sa création à Mohammedia, ScienceStore s'est imposé comme le partenaire privilégié des chercheurs, étudiants et passionnés. Notre mission est de démocratiser l'accès aux équipements de haute précision.
+                </p>
+               
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="about-image-stack">
+                    <div class="image-bg-deco"></div>
+                    <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=1470&auto=format&fit=crop" alt="Laboratoire" class="img-fluid rounded-4 shadow-lg position-relative">
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 p-4" style="background-color: #1a1a1a; border-radius: 20px;">
+                    <div class="icon-circle mb-3"><i class="fas fa-microscope"></i></div>
+                    <h4 class="text-white fw-bold">Qualité Certifiée</h4>
+                    <p class="text-white-50 small">Chaque article de notre inventaire passe par un contrôle de précision rigoureux avant d'être mis en vente.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 p-4" style="background-color: #1a1a1a; border-radius: 20px;">
+                    <div class="icon-circle mb-3"><i class="fas fa-truck-fast"></i></div>
+                    <h4 class="text-white fw-bold">Logistique Labo</h4>
+                    <p class="text-white-50 small">Livraison sécurisée et rapide sur tout le Maroc, avec un emballage spécial pour le matériel fragile.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 p-4" style="background-color: #1a1a1a; border-radius: 20px;">
+                    <div class="icon-circle mb-3"><i class="fas fa-user-graduate"></i></div>
+                    <h4 class="text-white fw-bold">Support Expert</h4>
+                    <p class="text-white-50 small">Notre équipe technique vous accompagne dans le choix et l'installation de vos outils de recherche.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-5 border-top border-secondary mt-5">
+            <div class="col-6 col-md-3 text-center mb-4 mb-md-0">
+                <h2 class="display-5 fw-bold text-warning mb-0">10+</h2>
+                <p class="text-white-50 text-uppercase small">Années d'Expérience</p>
+            </div>
+            <div class="col-6 col-md-3 text-center mb-4 mb-md-0">
+                <h2 class="display-5 fw-bold text-warning mb-0">500+</h2>
+                <p class="text-white-50 text-uppercase small">Équipements Pro</p>
+            </div>
+            <div class="col-6 col-md-3 text-center mb-4 mb-md-0">
+                <h2 class="display-5 fw-bold text-warning mb-0">2k+</h2>
+                <p class="text-white-50 text-uppercase small">Clients Labos</p>
+            </div>
+            <div class="col-6 col-md-3 text-center mb-4 mb-md-0">
+                <h2 class="display-5 fw-bold text-warning mb-0">24h</h2>
+                <p class="text-white-50 text-uppercase small">Support Technique</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-dark-custom {
+        background-color: #0d0d0d;
+    }
+
+    .tracking-widest {
+        letter-spacing: 3px;
+    }
+
+    /* Cercles d'icônes */
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 204, 0, 0.1);
+        color: #ffcc00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        font-size: 1.5rem;
+    }
+
+    /* Style du bouton */
+    .btn-yellow-pill {
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: 800;
+        border-radius: 50px;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-yellow-pill:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+    /* Décoration d'image */
+    .about-image-stack {
+        position: relative;
+        display: inline-block;
+        padding: 20px;
+    }
+
+    .image-bg-deco {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 80%;
+        height: 80%;
+        background: #ffcc00;
+        border-radius: 20px;
+        z-index: 0;
+    }
+
+    .about-image-stack img {
+        z-index: 1;
+        max-width: 100%;
+    }
+
+    /* Animation */
+    .card {
+        transition: transform 0.3s ease;
+        border: 1px solid transparent !important;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #ffcc00 !important;
+        }
+</style>

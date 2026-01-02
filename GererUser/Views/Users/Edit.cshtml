@@ -1,0 +1,116 @@
+﻿@model GestionUsersMVC.Models.User
+
+@{
+    ViewData["Title"] = "Modifier l'utilisateur";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-lg border-0" style="background-color: #1a1a1a; border-radius: 15px;">
+
+                <div class="card-header text-center py-4" style="border-bottom: 2px solid #ffcc00;">
+                    <h2 class="fw-bold" style="color: #ffcc00; letter-spacing: 1px;">
+                        <i class="fas fa-user-edit me-2"></i>MODIFIER L'UTILISATEUR
+                    </h2>
+                    <small class="text-muted text-uppercase">ID de référence : @Model.Id</small>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Nom" class="form-label fw-bold text-white">Nom</label>
+                                <input asp-for="Nom" class="form-control custom-input" placeholder="Nom de l'utilisateur" />
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Prenom" class="form-label fw-bold text-white">Prénom</label>
+                                <input asp-for="Prenom" class="form-control custom-input" placeholder="Prénom de l'utilisateur" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-bold text-white">Adresse Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-warning"><i class="fas fa-envelope"></i></span>
+                                <input asp-for="Email" class="form-control custom-input" placeholder="email@exemple.com" />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Role" class="form-label fw-bold text-white">Rôle / Privilèges</label>
+                            <select asp-for="Role" class="form-select custom-input">
+                                <option value="Etudiant">Etudiant</option>
+                                <option value="Doctorant">Doctorant</option>
+                                <option value="EnseignantChercheur">Enseignant-Chercheur</option>
+                                <option value="Evaluation">Évaluation</option>
+                            </select>
+                        </div>
+
+                        <hr style="border-top: 1px dashed #444;" class="my-4">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="text-decoration-none text-muted hover-white">
+                                <i class="fas fa-chevron-left me-1"></i> Annuler les changements
+                            </a>
+
+                            <button type="submit" class="btn btn-update px-5 fw-bold text-uppercase">
+                                <i class="fas fa-sync-alt me-2"></i>Mettre à jour
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Inputs sombres avec focus jaune */
+    .custom-input {
+        background-color: #2b2b2b !important;
+        border: 1px solid #444 !important;
+        color: #fff !important;
+        border-radius: 8px;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+    }
+
+        .custom-input:focus {
+            border-color: #ffcc00 !important;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.2) !important;
+            background-color: #333 !important;
+        }
+
+    /* Bouton de mise à jour Jaune */
+    .btn-update {
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 50px; /* Design plus arrondi pour l'édition */
+        transition: 0.3s;
+    }
+
+        .btn-update:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+    .hover-white:hover {
+        color: #fff !important;
+    }
+
+    /* Ajustement spécifique pour le select */
+    select.custom-input option {
+        background-color: #1a1a1a;
+        color: #fff;
+    }
+
+    footer {
+        display: none !important;
+    }
+</style>

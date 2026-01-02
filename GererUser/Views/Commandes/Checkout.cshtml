@@ -1,0 +1,133 @@
+﻿@model GestionUsersMVC.Models.Commande
+
+@{
+    ViewData["Title"] = "Livraison - ScienceStore";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            @* Indicateur de progression *@
+            <div class="d-flex justify-content-center mb-5">
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center mb-2 shadow" style="width: 40px; height: 40px;">
+                        <i class="fas fa-shopping-cart small"></i>
+                    </div>
+                    <small class="text-muted fw-bold">Panier</small>
+                </div>
+                <div class="align-self-center border-top border-2 border-warning" style="width: 60px; margin-bottom: 25px;"></div>
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center mb-2 shadow fw-bold" style="width: 40px; height: 40px;">
+                        2
+                    </div>
+                    <small class="fw-bold">Expédition</small>
+                </div>
+                <div class="align-self-center border-top border-2 border-light" style="width: 60px; margin-bottom: 25px;"></div>
+                <div class="text-center mx-3 mx-md-5">
+                    <div class="rounded-circle bg-light text-muted d-flex align-items-center justify-content-center mb-2 border" style="width: 40px; height: 40px;">
+                        3
+                    </div>
+                    <small class="text-muted fw-bold">Succès</small>
+                </div>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    @* Panneau latéral gauche (Info) *@
+                    <div class="col-md-4 bg-dark text-white p-5 d-none d-md-flex flex-column justify-content-center">
+                        <i class="fas fa-shipping-fast fa-4x text-warning mb-4"></i>
+                        <h4 class="fw-bold">Dernière étape !</h4>
+                        <p class="text-white-50">Nous avons besoin de vos coordonnées pour acheminer vos précieux spécimens de laboratoire.</p>
+                        <hr class="border-warning opacity-50">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-warning me-3"></i>
+                            <small>Paiement à la livraison</small>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-warning me-3"></i>
+                            <small>Expédition express</small>
+                        </div>
+                    </div>
+
+                    @* Formulaire à droite *@
+                    <div class="col-md-8 bg-white p-4 p-md-5">
+                        <h3 class="fw-bold mb-4">Informations de Livraison</h3>
+
+                        <form asp-action="Confirmer" method="post">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">NOM</label>
+                                    <input asp-for="Nom" class="form-control form-control-lg bg-light border-0 fs-6" placeholder="Votre nom" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">PRÉNOM</label>
+                                    <input asp-for="Prenom" class="form-control form-control-lg bg-light border-0 fs-6" placeholder="Votre Prenom" required />
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <label class="form-label small fw-bold text-muted">EMAIL DE CONTACT</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-0"><i class="fas fa-envelope text-muted"></i></span>
+                                        <input asp-for="Email" type="email" class="form-control form-control-lg bg-light border-0 fs-6" placeholder="Votre Email" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <label class="form-label small fw-bold text-muted">TÉLÉPHONE</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-0"><i class="fas fa-phone text-muted"></i></span>
+                                        <input asp-for="Telephone" class="form-control form-control-lg bg-light border-0 fs-6" placeholder="06XXXXXXXX" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <label class="form-label small fw-bold text-muted">ADRESSE COMPLÈTE DE LIVRAISON</label>
+                                    <textarea asp-for="Adresse" class="form-control bg-light border-0 fs-6" rows="3" placeholder="Numéro, rue, appartement, ville..." required></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-warning w-100 btn-lg mt-5 py-3 fw-bold shadow hover-lift rounded-pill">
+                                CONFIRMER ET PAYER À LA LIVRAISON <i class="fas fa-truck ms-2"></i>
+                            </button>
+
+                            <p class="text-center text-muted small mt-4">
+                                <i class="fas fa-shield-alt me-1 text-success"></i> Vos données sont protégées par cryptage SSL.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a asp-controller="Panier" asp-action="Index" class="text-decoration-none text-muted small fw-bold">
+                    <i class="fas fa-chevron-left me-1"></i> Retour au panier
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f4f7f6;
+    }
+
+    .form-control:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.2);
+        border: 1px solid #ffc107 !important;
+    }
+
+    .hover-lift {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+    .input-group-text {
+        color: #6c757d;
+    }
+</style>

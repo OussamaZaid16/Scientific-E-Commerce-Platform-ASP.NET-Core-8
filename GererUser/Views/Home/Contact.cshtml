@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Localisation - ScienceStore";
+}
+
+<div class="container-fluid bg-dark-custom min-vh-100 py-5 px-4">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white mb-2">NOTRE <span style="color: #ffcc00;">LABORATOIRE</span></h1>
+            <div class="mx-auto" style="width: 60px; height: 4px; background-color: #ffcc00;"></div>
+            <p class="text-white mt-3 fs-5 opacity-75">Retrouvez-nous au cœur du pôle scientifique.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-lg overflow-hidden" style="background-color: #1a1a1a; border-radius: 20px;">
+                    <div class="row g-0">
+
+                        <div class="col-md-4 p-4 p-lg-5 d-flex flex-column justify-content-center" style="border-right: 1px solid #2b2b2b;">
+                            <h3 class="text-white fw-bold mb-4">CONTACT</h3>
+
+                            <div class="mb-4">
+                                <label class="text-warning small fw-bold text-uppercase mb-2 d-block">Adresse</label>
+                                <div class="d-flex">
+                                    <i class="fas fa-map-marker-alt text-white-50 mt-1 me-3"></i>
+                                    <p class="text-white opacity-75 mb-0">Rue Riad Assalam,<br>Mohammedia, Maroc</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="text-warning small fw-bold text-uppercase mb-2 d-block">Contact Direct</label>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-phone-alt text-white-50 me-3"></i>
+                                    <p class="text-white opacity-75 mb-0">+212 6 34 65 85 34</p>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-envelope text-white-50 me-3"></i>
+                                    <p class="text-white opacity-75 mb-0">labo@sciencestore.com</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-0">
+                                <label class="text-warning small fw-bold text-uppercase mb-2 d-block">Horaires d'ouverture</label>
+                                <p class="text-white-50 small mb-1">Lun - Ven : 08:00 - 19:00</p>
+                                <p class="text-white-50 small">Samedi : 09:00 - 13:00</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8" style="min-height: 450px;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.541300951112!2d2.3444453768341684!3d48.847926101452414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671e3df6a9c13%3A0xe54d6935c102c018!2sSorbonne%20Universit%C3%A9!5e0!3m2!1sfr!2sfr!4v1710000000000!5m2!1sfr!2sfr"
+                                    width="100%"
+                                    height="100%"
+                                    style="border:0; filter: grayscale(100%) invert(92%) contrast(85%);"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="https://goo.gl/maps/xyz" target="_blank" class="btn btn-gps px-4 py-2 fw-bold text-uppercase">
+                        <i class="fas fa-directions me-2"></i>Ouvrir dans Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-dark-custom {
+        background-color: #0d0d0d;
+    }
+
+    /* Style du bouton GPS */
+    .btn-gps {
+        background-color: transparent;
+        color: #ffcc00;
+        border: 2px solid #ffcc00;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-gps:hover {
+            background-color: #ffcc00;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+        }
+
+    /* Animation pour l'apparition de la carte */
+    .card {
+        animation: slideUp 0.6s ease-out;
+    }
+
+    @@keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Overlay léger sur la map au repos */
+    iframe {
+        opacity: 0.9;
+    }
+</style>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<GestionUsersMVC.Models.Article>
+
+@{
+    ViewData["Title"] = "Gestion des Articles";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-dark fw-bold border-bottom border-warning pb-2">
+            <i class="fas fa-tools me-2"></i>Gestion du Catalogue
+        </h2>
+        <a asp-action="Create" class="btn btn-warning fw-bold shadow-sm">
+            <i class="fas fa-plus-circle me-1"></i> Ajouter un Article
+        </a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-dark text-warning border-dark">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" id="userSearch" class="form-control border-dark" placeholder="Rechercher par titre ou auteur...">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select id="userDomaine" class="form-select border-dark shadow-sm">
+                <option value="">Toutes les catégories</option>
+                @if (ViewBag.Domaines != null)
+                {
+                    foreach (var d in ViewBag.Domaines)
+                    {
+                        <option value="@d">@d</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div id="productGrid" class="bg-white p-3 rounded shadow-sm border">
+        <partial name="~/Views/Articles/_ArticlesGrid.cshtml" model="Model" />
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let timeout = null;
+
+            function filter() {
+                $("#productGrid").css("opacity", "0.5");
+                var q = $("#userSearch").val();
+                var d = $("#userDomaine").val();
+
+                $.ajax({
+                    url: '@Url.Action("IndexM", "Articles")',
+                    type: 'GET',
+                    data: { q: q, domaine: d },
+                    headers: { "X-Requested-With": "XMLHttpRequest" },
+                    success: function (data) {
+                        $("#productGrid").html(data).css("opacity", "1");
+                    },
+                    error: function () {
+                        alert("Erreur lors de la recherche");
+                        $("#productGrid").css("opacity", "1");
+                    }
+                });
+            }
+
+            $("#userSearch").on("keyup", function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(filter, 300);
+            });
+
+            $("#userDomaine").on("change", filter);
+        });
+    </script>
+}

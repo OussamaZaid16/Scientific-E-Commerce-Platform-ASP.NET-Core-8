@@ -1,0 +1,97 @@
+﻿@model ScienceStore.Models.ArticleViewModel
+
+@{
+    ViewData["Title"] = "Laboratoire - Modifier Spécimen";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                @* Header *@
+                <div class="card-header bg-dark text-white py-4 border-0">
+                    <div class="d-flex align-items-center justify-content-between px-3">
+                        <div>
+                            <h3 class="fw-bold mb-0 text-warning">
+                                <i class="fas fa-edit me-2"></i>Modification du Spécimen
+                            </h3>
+                            <p class="text-white-50 small mb-0">ID de l'article : #@Model.Id</p>
+                        </div>
+                        <i class="fas fa-microscope fa-3x opacity-25"></i>
+                    </div>
+                </div>
+
+                <div class="card-body p-5 bg-white">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="NomFichierImageExistant" />
+
+                        <div class="row g-4">
+                            @* Titre *@
+                            <div class="col-12">
+                                <label asp-for="Nom" class="form-label fw-bold">Désignation</label>
+                                <input asp-for="Nom" class="form-control" />
+                                <span asp-validation-for="Nom" class="text-danger small"></span>
+                            </div>
+
+                            @* Domaine *@
+                            <div class="col-md-6">
+                                <label asp-for="Domaine" class="form-label fw-bold">Domaine</label>
+                                <select asp-for="Domaine" class="form-select" asp-items="ViewBag.DomaineChoices"></select>
+                            </div>
+
+                            @* Prix *@
+                            <div class="col-md-6">
+                                <label asp-for="Prix" class="form-label fw-bold">Prix (€)</label>
+                                <input asp-for="Prix" class="form-control" type="number" step="0.01" />
+                            </div>
+
+                            @* Image *@
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold d-block">Aperçu actuel</label>
+                                @if (!string.IsNullOrEmpty(Model.NomFichierImageExistant))
+                                {
+                                    <img src="~/images/@Model.NomFichierImageExistant" class="img-thumbnail mb-2" style="height: 100px;">
+                                }
+                                <input asp-for="FichierImage" type="file" class="form-control" accept="image/*" />
+                            </div>
+
+                            @* Note *@
+                            <div class="col-md-6">
+                                <label asp-for="NoteMoyenne" class="form-label fw-bold">Note (0-5)</label>
+                                <input asp-for="NoteMoyenne" class="form-control" type="number" step="0.1" />
+                            </div>
+
+                            @* Description Courte *@
+                            <div class="col-12">
+                                <label asp-for="DescriptionCourte" class="form-label fw-bold">Résumé (Description courte)</label>
+                                <input asp-for="DescriptionCourte" class="form-control" />
+                            </div>
+
+                            @* --- LE CHAMP MANQUANT QUI CAUSE L'ERREUR SQL --- *@
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label fw-bold">Description Détaillée (Obligatoire)</label>
+                                <textarea asp-for="Description" class="form-control" rows="5" placeholder="Saisissez les détails pour éviter l'erreur NULL..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-3 mt-5">
+                            <a asp-action="IndexM" class="btn btn-light px-4 rounded-pill border fw-bold text-muted">Annuler</a>
+                            <button type="submit" class="btn btn-warning px-5 rounded-pill fw-bold shadow-sm">
+                                <i class="fas fa-save me-2"></i>Enregistrer les modifications
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

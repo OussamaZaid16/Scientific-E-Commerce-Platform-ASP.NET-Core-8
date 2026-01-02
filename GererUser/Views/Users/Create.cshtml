@@ -1,0 +1,109 @@
+﻿@model GestionUsersMVC.Models.User
+
+@{
+    ViewData["Title"] = "Ajouter utilisateur";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0" style="background-color: #1a1a1a; border-radius: 15px;">
+                <div class="card-header text-center py-4" style="border-bottom: 2px solid #ffcc00;">
+                    <h2 class="fw-bold" style="color: #ffcc00; letter-spacing: 1px;">
+                        <i class="fas fa-user-plus me-2"></i>AJOUTER UTILISATEUR
+                    </h2>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="Nom" class="form-label fw-bold" style="color: #ffffff;">Nom</label>
+                            <input asp-for="Nom" class="form-control custom-input" placeholder="Entrez le nom" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Prenom" class="form-label fw-bold" style="color: #ffffff;">Prénom</label>
+                            <input asp-for="Prenom" class="form-control custom-input" placeholder="Entrez le prénom" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-bold" style="color: #ffffff;">Email</label>
+                            <input asp-for="Email" type="email" class="form-control custom-input" placeholder="exemple@mail.com" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MotDePasse" class="form-label fw-bold" style="color: #ffffff;">Mot de passe</label>
+                            <input asp-for="MotDePasse" type="password" class="form-control custom-input" placeholder="••••••••" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Role" class="form-label fw-bold" style="color: #ffffff;">Rôle</label>
+                            <select asp-for="Role" class="form-select custom-input">
+                                <option value="Etudiant">Etudiant</option>
+                                <option value="Doctorant">Doctorant</option>
+                                <option value="EnseignantChercheur">Enseignant-Chercheur</option>
+                                <option value="Evaluation">Évaluation</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-yellow fw-bold py-2 text-uppercase">
+                                <i class="fas fa-save me-2"></i>Enregistrer
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-light btn-sm mt-2 border-0" style="color: #ffcc00;">
+                                <i class="fas fa-arrow-left me-1"></i> Retour à la liste
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style des champs de saisie */
+    .custom-input {
+        background-color: #2b2b2b !important;
+        border: 1px solid #444 !important;
+        color: #fff !important;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .custom-input:focus {
+            border-color: #ffcc00 !important;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.3) !important;
+            background-color: #333 !important;
+        }
+
+        /* Placeholder blanc cassé */
+        .custom-input::placeholder {
+            color: #777;
+        }
+
+    /* Bouton Jaune */
+    .btn-yellow {
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+        .btn-yellow:hover {
+            background-color: #e6b800;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+    /* Style spécifique pour le select */
+    select.custom-input option {
+        background-color: #1a1a1a;
+        color: #fff;
+    }
+
+    footer {
+        display: none !important;
+    }
+</style>

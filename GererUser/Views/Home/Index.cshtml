@@ -1,0 +1,110 @@
+﻿@using GestionUsersMVC.Models
+@model IEnumerable<GestionUsersMVC.Models.Article>
+
+@{
+    ViewData["Title"] = "Accueil - Boutique Scientifique";
+}
+
+@* 1. Hero Section *@
+<div class="container-fluid p-0 mb-5">
+    <div class="position-relative text-center text-white bg-dark py-5 shadow-lg"
+         style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/images/science-bg.jpg') center/cover; min-height: 300px;">
+        <div class="py-5">
+            <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">Explorez le Monde des Sciences</h1>
+            <p class="lead px-4 animate__animated animate__fadeInUp">Kits d'expériences et matériel de laboratoire de haute précision.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    @* 2. Barre de Recherche et Filtres *@
+    <div class="row justify-content-center mb-5 g-3">
+        <div class="col-md-5">
+            <div class="input-group shadow-sm border rounded-pill overflow-hidden">
+                <span class="input-group-text bg-white border-0 ps-4"><i class="fas fa-search text-primary"></i></span>
+                <input type="text" id="userSearch" class="form-control border-0 py-2" placeholder="Rechercher un article (ex: Microscope)..." value="@ViewBag.CurrentSearch">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group shadow-sm border rounded-pill overflow-hidden">
+                <span class="input-group-text bg-white border-0 ps-3"><i class="fas fa-filter text-muted small"></i></span>
+                <select id="userDomaine" class="form-select border-0 py-2">
+                    <option value="">Toutes les catégories</option>
+                    @if (ViewBag.Domaines != null)
+                    {
+                        foreach (var d in ViewBag.Domaines)
+                        {
+                            <!option value="@d" @(d == ViewBag.SelectedDomaine ? "selected" : "")>@d</!option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    @* 3. Conteneur de la Grille (Mis à jour par AJAX) *@
+    <div id="productGrid" class="position-relative">
+        <partial name="_ArticlesGrid" model="Model" />
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let timeout = null;
+
+            // Fonction de filtrage globale avec gestion de la page
+            window.filter = function (page = 1) {
+                // Animation de chargement
+                $("#productGrid").css("opacity", "0.5");
+
+                var q = $("#userSearch").val();
+                var d = $("#userDomaine").val();
+
+                $.ajax({
+                    url: '@Url.Action("Index", "Home")',
+                    type: 'GET',
+                    data: { q: q, domaine: d, page: page },
+                    headers: { "X-Requested-With": "XMLHttpRequest" },
+                    success: function (data) {
+                        $("#productGrid").html(data).css("opacity", "1");
+
+                        // Remonter doucement vers la grille lors du changement de page
+                        if(page > 1) {
+                            $('html, body').animate({
+                                scrollTop: $("#productGrid").offset().top - 100
+                            }, 300);
+                        }
+                    },
+                    error: function () {
+                        console.error("Erreur lors du chargement des données.");
+                        $("#productGrid").css("opacity", "1");
+                    }
+                });
+            }
+
+            // Anti-rebond pour la recherche (on repasse à la page 1)
+            $("#userSearch").on("keyup", function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    filter(1);
+                }, 300);
+            });
+
+            // Filtrage immédiat au changement de domaine (on repasse à la page 1)
+            $("#userDomaine").on("change", function() {
+                filter(1);
+            });
+        });
+
+        // Fonction d'ajout au panier
+        function ajouterAuPanier(id) {
+            $.post('@Url.Action("Ajouter", "Panier")', { id: id }, function () {
+                // Utilisation d'une notification plus élégante si possible, sinon alert
+                alert("🔬 Article ajouté avec succès !");
+            }).fail(function() {
+                alert("Erreur lors de l'ajout au panier.");
+            });
+        }
+    </script>
+}

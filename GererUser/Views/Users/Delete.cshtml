@@ -1,0 +1,86 @@
+﻿@model GestionUsersMVC.Models.User
+
+@{
+    ViewData["Title"] = "Supprimer utilisateur";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0" style="background-color: #1a1a1a; border-radius: 15px; border: 1px solid #333;">
+
+                <div class="card-header text-center py-4" style="border-bottom: 2px solid #ffcc00;">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3" style="color: #ffcc00;"></i>
+                    <h2 class="fw-bold" style="color: #ffcc00; letter-spacing: 1px;">SUPPRIMER L'UTILISATEUR</h2>
+                </div>
+
+                <div class="card-body p-5 text-center">
+                    <p class="fs-5" style="color: #ffffff;">
+                        Voulez-vous vraiment supprimer définitivement l'utilisateur :
+                    </p>
+                    <div class="p-3 my-4" style="background-color: #2b2b2b; border-radius: 8px; border-left: 4px solid #ffcc00;">
+                        <span class="fs-4 fw-bold" style="color: #ffcc00;">@Model.Email</span>
+                        <div class="small text-muted mt-1 text-uppercase">@Model.Nom @Model.Prenom</div>
+                    </div>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn btn-delete fw-bold py-2 text-uppercase">
+                                <i class="fas fa-trash-alt me-2"></i>Confirmer la suppression
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-outline-light py-2 text-uppercase fw-bold" style="letter-spacing: 1px;">
+                                <i class="fas fa-times me-2"></i>Annuler
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-footer text-center py-3" style="background-color: #111; border-top: 1px solid #333; border-radius: 0 0 15px 15px;">
+                    <small class="text-muted">Cette action est irréversible.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Bouton de suppression personnalisé (Jaune) */
+    .btn-delete {
+        background-color: #ffcc00;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-delete:hover {
+            background-color: #e6b800;
+            color: #000;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        }
+
+    /* Animation d'entrée pour la card */
+    .card {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    footer {
+        display: none !important;
+    }
+</style>

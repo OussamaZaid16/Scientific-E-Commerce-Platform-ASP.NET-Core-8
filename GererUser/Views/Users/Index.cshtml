@@ -1,0 +1,132 @@
+﻿@model List<GestionUsersMVC.Models.User>
+@using GestionUsersMVC.Models
+
+@{
+    ViewData["Title"] = "Gestion des Utilisateurs";
+}
+
+<div class="container-fluid mt-4 px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-uppercase" style="color: #ffcc00; letter-spacing: 2px;">
+                <i class="fas fa-users-cog me-2"></i>Gestion des utilisateurs
+            </h2>
+            <p class="text-muted mb-0">Administration et contrôle des accès au système</p>
+        </div>
+        <a asp-action="Create" class="btn btn-yellow-pill shadow-sm">
+            <i class="fas fa-plus-circle me-2"></i>Nouvel Utilisateur
+        </a>
+    </div>
+
+    <div class="card shadow border-0" style="background-color: #1a1a1a; border-radius: 15px; overflow: hidden;">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0" style="border-collapse: separate; border-spacing: 0;">
+                <thead style="background-color: #000;">
+                    <tr>
+                        <th class="py-3 px-4 border-0 text-warning text-uppercase small">Nom & Prénom</th>
+                        <th class="py-3 px-4 border-0 text-warning text-uppercase small">Identifiant Email</th>
+                        <th class="py-3 px-4 border-0 text-warning text-uppercase small">Rôle Système</th>
+                        <th class="py-3 px-4 border-0 text-warning text-uppercase small text-end">Actions de Gestion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr class="align-middle" style="border-bottom: 1px solid #2b2b2b;">
+                            <td class="py-3 px-4 border-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-circle me-3">@u.Nom.Substring(0, 1)</div>
+                                    <span class="fw-bold text-white">@u.Nom @u.Prenom</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 border-0 text-white opacity-75">@u.Email</td>
+                            <td class="py-3 px-4 border-0">
+                                <span class="badge rounded-pill bg-dark text-warning border border-warning px-3 py-2">
+                                    @u.Role
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 border-0 text-end">
+                                <div class="btn-group shadow-sm">
+                                    <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-outline-warning btn-sm border-0 px-3" title="Modifier">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@u.Id" class="btn btn-outline-danger btn-sm border-0 px-3" title="Supprimer">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <small class="text-muted">Étudiants : <span class="text-warning fw-bold">@Model.Count(u => u.Role == Role.Etudiant)/</span></small>
+    <small class="text-muted">Doctorants : <span class="text-warning fw-bold">@Model.Count(u => u.Role == Role.Doctorant)/</span></small>
+    <small class="text-muted">Enseignants-Chercheurs : <span class="text-warning fw-bold">@Model.Count(u => u.Role == Role.EnseignantChercheur)/</span></small>
+    <small class="text-muted">Évaluateurs : <span class="text-warning fw-bold">@Model.Count(u => u.Role == Role.Evaluateur)/</span></small>
+    <small class="text-muted">Total : <span class="text-warning fw-bold">@Model.Count</span></small>
+</div>
+
+<style>
+    /* Style du bouton principal */
+    .btn-yellow-pill {
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 50px;
+        padding: 10px 25px;
+        transition: all 0.3s ease;
+        border: none;
+    }
+
+        .btn-yellow-pill:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+            color: #000;
+        }
+
+    /* Avatar généré */
+    .avatar-circle {
+        width: 35px;
+        height: 35px;
+        background-color: #2b2b2b;
+        color: #ffcc00;
+        border: 1px solid #ffcc00;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    /* Effets de survol sur les lignes */
+    .table-hover tbody tr:hover {
+        background-color: #252525 !important;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Style du scrollbar pour le mode sombre */
+    .table-responsive::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 10px;
+    }
+
+    /* Icônes d'actions */
+    .btn-group .btn:hover {
+        transform: scale(1.2);
+        background: transparent !important;
+    }
+
+    footer {
+        display: none !important;
+    }
+</style>
