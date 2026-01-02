@@ -24,7 +24,7 @@
                     <tr>
                         <th class="ps-4">Date</th>
                         <th>Client</th>
-                        <th>Articles</th> @* Nouvelle colonne *@
+                        <th>Articles</th>
                         <th>Contact & Adresse</th>
                         <th class="text-end">Montant</th>
                         <th class="text-center pe-4">Action</th>
@@ -42,7 +42,6 @@
                                 <div class="fw-bold text-dark">@item.Nom @item.Prenom</div>
                             </td>
                             <td>
-                                @* --- AFFICHAGE DES ARTICLES --- *@
                                 @if (item.Articles != null && item.Articles.Any())
                                 {
                                     <div class="d-flex flex-wrap gap-1" style="max-width: 300px;">
@@ -60,10 +59,15 @@
                                 }
                             </td>
                             <td>
-                                <div class="small">
+                                @* --- SECTION CONTACT AVEC TÉLÉPHONE --- *@
+                                <div class="small mb-1">
                                     <i class="fas fa-envelope me-1 text-muted"></i> @item.Email
                                 </div>
-                                <div class="small text-muted mt-1" style="max-width: 200px; line-height: 1.2;">
+                                <div class="small mb-1">
+                                    <i class="fas fa-phone me-1 text-success"></i>
+                                    <span class="fw-bold text-dark">@item.Telephone</span>
+                                </div>
+                                <div class="small text-muted" style="max-width: 200px; line-height: 1.2;">
                                     <i class="fas fa-map-marker-alt me-1 opacity-50"></i> @item.Adresse
                                 </div>
                             </td>
